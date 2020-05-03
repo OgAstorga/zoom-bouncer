@@ -1,0 +1,43 @@
+{% extends "./base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+  <section class="hero is-medium is-primary is-bold">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">#NOWILOOKAFTERYOU</h1>
+        <h2 class="subtitle">Event starts on Sat May 9 at 9 pm.</h2>
+        <br />
+        <br />
+        <br />
+        <div class="level is-mobile" style="width: 500px;margin: 0 auto;">
+          <div class="level-item has-text-centered">
+            <div class="box" style="width:100px">
+              <p class="heading">DAYS</p>
+              <p class="title has-text-primary">{{ days }}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div class="box" style="width:100px">
+              <p class="heading">HOURS</p>
+              <p class="title has-text-primary">{{ hours }}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div class="box" style="width:100px">
+              <p class="heading">MINUTES</p>
+              <p class="title has-text-primary">{{ minutes }}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div class="box" style="width:100px">
+              <p class="heading">SECONDS</p>
+              <p class="title has-text-primary">{{ seconds }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
