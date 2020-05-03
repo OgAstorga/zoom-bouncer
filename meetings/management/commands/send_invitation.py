@@ -3,6 +3,9 @@ from django.core import mail
 from django.core.management.base import BaseCommand, CommandError
 from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
+from yuid import yuid
+
+from meetings.models import Meeting, Ticket
 
 
 class Command(BaseCommand):
@@ -18,31 +21,35 @@ class Command(BaseCommand):
         subject_email = options['email']
         donation = options['donation']
 
-        ticket_ammount = donation // 40
+        ticket_ammount = min(donation // 40, 4)
 
         self.stdout.write('Generating {} tickets for {}'.format(ticket_ammount, subject_email))
 
-        '''
+        meeting = Meeting.objects.all()[0]
+
         tickets = []
         for i in range(ticket_ammount):
-            ticket = Ticket(max_usages=1)
+            ticket = Ticket(
+                token=yuid(),
+                meeting=meeting,
+                max_usages=3,
+            )
             ticket.save()
             tickets.append(ticket)
-        '''
 
         # render mail
         html_email = None
         html_email = render_to_string('invitation.html', {
-            'subject_name': subject_name
+            'subject_name': subject_name,
+            'tickets': list(map(lambda t: "http://localhost:8000/ticket/{}".format(t.token), tickets)),
         })
-
 
         # send mail
         connection = mail.get_connection()
         connection.open()
 
         email = mail.EmailMultiAlternatives(
-            'Hello',
+            'Thank you. Here are your tickets',
             'Body goes here',
             settings.EMAIL_ADDRESS,
             [subject_email],

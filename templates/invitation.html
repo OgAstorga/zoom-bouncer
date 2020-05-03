@@ -48,18 +48,11 @@
       </mj-column>
     </mj-section>
     <mj-section padding-bottom="20px" padding-top="0">
-      <mj-column width="25%">
-        <mj-image href="https://nowilookafteryou.com/" src="http://191n.mj.am/img/191n/3s/y2.jpg" alt="Partner logo" width="95px" padding="0 0 10px 0"></mj-image>
-      </mj-column>
-      <mj-column width="25%">
-        <mj-image href="https://nowilookafteryou.com/" src="http://191n.mj.am/img/191n/3s/y2.jpg" alt="Partner logo" width="95px" padding="0 0 10px 0"></mj-image>
-      </mj-column>
-      <mj-column width="25%">
-        <mj-image href="https://nowilookafteryou.com/" src="http://191n.mj.am/img/191n/3s/y2.jpg" alt="Partner logo" width="95px" padding="0 0 10px 0"></mj-image>
-      </mj-column>
-      <mj-column width="25%">
-        <mj-image href="https://nowilookafteryou.com/" src="http://191n.mj.am/img/191n/3s/y2.jpg" alt="Partner logo" width="95px" padding="0 0 10px 0"></mj-image>
-      </mj-column>
+      {% for ticket in tickets %}
+        <mj-column width="25%">
+          <mj-image href={{ ticket }} src="http://191n.mj.am/img/191n/3s/y2.jpg" alt="Partner logo" width="95px" padding="0 0 10px 0"></mj-image>
+        </mj-column>
+      {% endfor %}
     </mj-section>
     <mj-section padding-bottom="20px" padding-top="20px">
       <mj-column>
