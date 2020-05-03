@@ -9,6 +9,7 @@ verify_ssl = true
 django = "*"
 django-mjml = "*"
 requests = "*"
+yuid = "*"
 
 [requires]
 python_version = "3.8"
