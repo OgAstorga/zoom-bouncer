@@ -12,3 +12,13 @@ class Ticket(models.Model):
     meeting = models.ForeignKey(Meeting, on_delete=models.CASCADE)
     usages = models.IntegerField(default=0)
     max_usages = models.IntegerField(default=3)
+
+
+class Donor(models.Model):
+    id = models.IntegerField(primary_key=True)
+    first_name = models.CharField(max_length=512)
+    last_name = models.CharField(max_length=512)
+    email = models.CharField(max_length=512)
+    amount = models.CharField(max_length=9)
+    currency = models.CharField(max_length=5)
+    mail_sent = models.BooleanField(default=False, db_index=True)

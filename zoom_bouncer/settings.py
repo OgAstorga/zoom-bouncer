@@ -116,3 +116,13 @@ EMAIL_ADDRESS = os.environ.get('EMAIL_ADDRESS', '')
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Donor API
+
+DONOR_USER = os.environ.get('DONOR_USER', None)
+DONOR_PASSWORD = os.environ.get('DONOR_PASSWORD', None)
+
+
+# Zoom API
+
+ZOOM_JWT = os.environ.get('ZOOM_JWT', None)
