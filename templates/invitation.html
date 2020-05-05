@@ -41,18 +41,24 @@
     </mj-section>
     <mj-section background-color="#ffffff" background-url="http://191n.mj.am/img/191n/3s/xl9.jpg" background-size="cover" padding-bottom="20px" padding-top="20px">
       <mj-column>
-        <mj-button mj-class="button" href="https://nowilookafteryou.com/" padding="305px 25px 0">ITINERARY</mj-button>
+        <mj-button mj-class="button" href="https://nowilookafteryou.com/" background-color="#fdab37" font-weight="bold" padding="305px 25px 0">ITINERARY</mj-button>
       </mj-column>
     </mj-section>
     <mj-section padding-bottom="20px" padding-top="20px">
       <mj-column>
-        <mj-button background-color="#000000" color="#1eb4e9" font-size="16px" border-radius="0px" padding="10px 25px">HERE ARE YOUR TICKETS</mj-button>
+        <mj-button background-color="#0e0031" color="#ffffff" font-size="16px" font-weight="bold" border-radius="0px" padding="10px 25px">HERE ARE YOUR TICKETS</mj-button>
       </mj-column>
     </mj-section>
     <mj-section padding-bottom="20px" padding-top="0">
       {% for ticket in tickets %}
-        <mj-column width="25%">
-          <mj-image href={{ ticket }} src="http://191n.mj.am/img/191n/3s/y2.jpg" alt="Partner logo" width="95px" padding="0 0 10px 0"></mj-image>
+        <mj-column width="100%">
+          <mj-text align="center" font-size="13px" padding="0 25px">
+            <p>
+              <strong>TICKET {{ forloop.counter }}</strong>
+              <br />
+              <a href={{ ticket }}>{{ ticket }}</a>
+            </p>
+          </mj-text>
         </mj-column>
       {% endfor %}
     </mj-section>
