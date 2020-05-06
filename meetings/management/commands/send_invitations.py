@@ -7,26 +7,17 @@ from random import shuffle
 from math import ceil
 
 from meetings.models import Donor
+from .send_invitation import send_invitation
 
 
 class Command(BaseCommand):
     help = 'Send invitations'
 
-    def add_arguments(self, parser):
-        parser.add_argument('job_size', type=int)
-
     def handle(self, *args, **options):
         donors = list(Donor.objects.filter(mail_sent=False).all())
-        shuffle(donors)
-        job_size = options['job_size']
 
         mails = 0
-        for i in range(job_size):
-            if i >= len(donors):
-                break
-
-            donor = donors[i]
-
+        for donor in donors:
             usd_amount = float(donor.amount)
             if donor.currency == 'MXN':
                 usd_amount /= 24.2
@@ -40,15 +31,17 @@ class Command(BaseCommand):
                 usd_amount /= 0.92
             usd_amount = ceil(usd_amount)
 
-            self.stdout.write('{} {} donated {} USD'.format(donor.first_name, donor.last_name, usd_amount))
+            if donor.campaign == 166894 and usd_amount >= 40:
+                self.stdout.write('{} {} donated {} USD'.format(donor.first_name, donor.last_name, usd_amount))
 
-            if usd_amount < 40:
-                # Don't send mail
+                send_invitation(
+                    self,
+                    '{} {}'.format(donor.first_name, donor.last_name),
+                    donor.email,
+                    usd_amount,
+                )
+
                 donor.mail_sent = True
                 donor.save()
-            else:
-                mails += 1
-                pass
-                # send mail
 
-        self.stdout.write('{} donors. {} mails sent'.format(min(len(donors), job_size), mails))
+        self.stdout.write('{} donors. {} mails sent'.format(len(donors), mails))
