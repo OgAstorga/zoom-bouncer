@@ -114,6 +114,7 @@ EMAIL_ADDRESS = os.environ.get('EMAIL_ADDRESS', '')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.environ.get('STATIC_ROOT', None)
 STATIC_URL = '/static/'
 
 # Donor API
