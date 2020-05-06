@@ -31,6 +31,7 @@ class Command(BaseCommand):
             if not donor:
                 donor = Donor(
                     id=donation['id'],
+                    campaign=donation['campaign']['id'],
                     first_name=donation['donor']['first_name'],
                     last_name=donation['donor']['last_name'],
                     email=donation['donor']['email'],
@@ -41,5 +42,13 @@ class Command(BaseCommand):
                 donor.save()
 
                 synced_donors += 1
+            else:
+                donor.campaign=donation['campaign']['id']
+                donor.first_name=donation['donor']['first_name']
+                donor.last_name=donation['donor']['last_name']
+                donor.email=donation['donor']['email']
+                donor.amount=donation['amount']
+                donor.currency=donation['currency']
+                donor.save()
 
         self.stdout.write("New donors: {} donors".format(synced_donors))

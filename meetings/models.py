@@ -16,6 +16,7 @@ class Ticket(models.Model):
 
 class Donor(models.Model):
     id = models.IntegerField(primary_key=True)
+    campaign = models.IntegerField(null=True)
     first_name = models.CharField(max_length=512)
     last_name = models.CharField(max_length=512)
     email = models.CharField(max_length=512)
