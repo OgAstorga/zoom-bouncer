@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         AuthorizationHeader = '{}:{}'.format(settings.DONOR_USER, settings.DONOR_PASSWORD)
-        response = requests.get('https://donorbox.org/api/v1/donations', headers={
+        response = requests.get('https://donorbox.org/api/v1/donations?per_page=100', headers={
             'Authorization': 'Basic {}'.format(b64encode(AuthorizationHeader.encode()).decode('ascii'))
         })
 
