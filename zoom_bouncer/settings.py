@@ -117,6 +117,10 @@ EMAIL_ADDRESS = os.environ.get('EMAIL_ADDRESS', '')
 STATIC_ROOT = os.environ.get('STATIC_ROOT', None)
 STATIC_URL = '/static/'
 
+# Base URL
+
+PUBLIC_BASE_URL = os.environ.get('PUBLIC_BASE_URL', '')
+
 # Donor API
 
 DONOR_USER = os.environ.get('DONOR_USER', None)

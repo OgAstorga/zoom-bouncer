@@ -38,10 +38,11 @@ class Command(BaseCommand):
             tickets.append(ticket)
 
         # render mail
+        base_url = settings.PUBLIC_BASE_URL
         html_email = None
         html_email = render_to_string('invitation.html', {
             'subject_name': subject_name,
-            'tickets': list(map(lambda t: "http://localhost:8000/ticket/{}".format(t.token), tickets)),
+            'tickets': list(map(lambda t: "{}/ticket/{}".format(base_url, t.token), tickets)),
         })
 
         # send mail
