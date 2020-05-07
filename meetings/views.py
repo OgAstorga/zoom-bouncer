@@ -48,7 +48,7 @@ def ticket_detail(request, token):
 def summary(request):
     donors = Donor.objects.all()
 
-    campaign = request.GET.get('campaign', 166894)
+    campaign = int(request.GET.get('campaign', 166894))
 
     count = 0
     total = 0
