@@ -48,11 +48,13 @@ def ticket_detail(request, token):
 def summary(request):
     donors = Donor.objects.all()
 
+    campaign = request.GET.get('campaign', 166894)
+
     count = 0
     total = 0
     detail = dict()
     for donor in donors:
-        if donor.campaign != 166894:
+        if donor.campaign != campaign:
             continue
 
         if donor.currency not in detail:
