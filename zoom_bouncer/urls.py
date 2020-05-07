@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from meetings.views import ticket_detail
+from meetings.views import ticket_detail, summary
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ticket/<token>', ticket_detail),
+    path('summary', summary),
 ]

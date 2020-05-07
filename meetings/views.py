@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from .models import Ticket
+from django.http import HttpResponse
+from .models import Ticket, Donor
 from datetime import datetime, timezone
+from math import ceil
+import json
 
 
 def ticket_detail(request, token):
@@ -41,3 +44,42 @@ def ticket_detail(request, token):
     else:
         return render(request, 'meetings/ticket-limitreached.html')
 
+
+def summary(request):
+    donors = Donor.objects.all()
+
+    count = 0
+    total = 0
+    detail = dict()
+    for donor in donors:
+        if donor.campaign != 166894:
+            continue
+
+        if donor.currency not in detail:
+            detail[donor.currency] = 0.0
+
+        detail[donor.currency] += float(donor.amount)
+
+        usd_amount = float(donor.amount)
+        if donor.currency == 'MXN':
+            usd_amount /= 24.2
+        elif donor.currency == 'GBP':
+            usd_amount /= 0.9
+        elif donor.currency == 'CAD':
+            usd_amount /= 1.5
+        elif donor.currency == 'DKK':
+            usd_amount /= 6.9
+        elif donor.currency == 'EUR':
+            usd_amount /= 0.92
+        usd_amount = ceil(usd_amount)
+
+        count += 1
+        total += usd_amount
+
+    answer = {
+        "count": count,
+        "total": total,
+        'detail': list(detail.items()),
+    }
+
+    return HttpResponse(json.dumps(answer), content_type="application/json")
