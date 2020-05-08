@@ -1,5 +1,6 @@
 import json
 import requests
+import random
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -25,7 +26,7 @@ class Command(BaseCommand):
 
         response = requests.patch(
             "https://api.zoom.us/v2/meetings/{}/".format(meeting_id),
-            data=json.dumps({ "password": 123123 }),
+            data=json.dumps({ "password": random.randint(100000, 999999) }),
             headers={
                 "Authorization": "Bearer {}".format(settings.ZOOM_JWT),
                 "Content-Type": "application/json",
