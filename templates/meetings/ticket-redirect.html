@@ -7,11 +7,26 @@
       <div class="container has-text-centered">
         <h1 class="title">Welcome to the party</h1>
         <br />
-        <h2 class="subtitle">Redirecting to zoom...</h2>
+        <div id="redirecting" style="display: block;">
+          <h2 class="subtitle">Redirecting to zoom...</h2>
+        </div>
+        <div id="redirect-button" style="display: none;">
+          <p>If you were not redirected to zoom please click here</p>
+          <br />
+          <a href={{ meeting.join_url }} class="button is-primary">Enter the party</a>
+        </div>
       </div>
     </div>
   </section>
-
   <iframe src={{ meeting.join_url }} frameborder="0" width="1" height="1"></iframe>
 </div>
+
+<script>
+  (function () {
+    setTimeout(function () {
+      document.getElementById('redirecting').setAttribute('style', 'display: none');
+      document.getElementById('redirect-button').setAttribute('style', 'display: block');
+    }, 15000);
+  })();
+</script>
 {% endblock %}
