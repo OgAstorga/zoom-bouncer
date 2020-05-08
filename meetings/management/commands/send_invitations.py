@@ -31,7 +31,7 @@ class Command(BaseCommand):
                 usd_amount /= 0.92
             usd_amount = ceil(usd_amount)
 
-            if donor.campaign == 166894 and usd_amount >= 40:
+            if (donor.campaign == 166894 or donor.campaign == 167487) and usd_amount >= 40:
                 self.stdout.write('{} {} donated {} USD'.format(donor.first_name, donor.last_name, usd_amount))
 
                 send_invitation(
