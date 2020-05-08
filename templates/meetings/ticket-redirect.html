@@ -10,10 +10,15 @@
         <div id="redirecting" style="display: block;">
           <h2 class="subtitle">Redirecting to zoom...</h2>
         </div>
+
         <div id="redirect-button" style="display: none;">
           <p>If you were not redirected to zoom please click here</p>
           <br />
           <a href={{ meeting.join_url }} class="button is-primary">Enter the party</a>
+        </div>
+
+        <div id="enjoy-the-show" style="display: none;">
+          <h2 class="subtitle">Enjoy the show!</h2>
         </div>
       </div>
     </div>
@@ -26,7 +31,14 @@
     setTimeout(function () {
       document.getElementById('redirecting').setAttribute('style', 'display: none');
       document.getElementById('redirect-button').setAttribute('style', 'display: block');
+      document.getElementById('enjoy-the-show').setAttribute('style', 'display: none');
     }, 5000);
+
+    setTimeout(function () {
+      document.getElementById('redirecting').setAttribute('style', 'display: none');
+      document.getElementById('redirect-button').setAttribute('style', 'display: none');
+      document.getElementById('enjoy-the-show').setAttribute('style', 'display: block');
+    }, 30000);
   })();
 </script>
 {% endblock %}
