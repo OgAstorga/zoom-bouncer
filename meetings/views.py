@@ -40,7 +40,9 @@ def ticket_detail(request, token):
         ticket.usages += 1
         # ticket.save()
 
-        return render(request, 'meetings/ticket-redirect.html')
+        return render(request, 'meetings/ticket-redirect.html', {
+            'meeting': meeting
+        })
     else:
         return render(request, 'meetings/ticket-limitreached.html')
 
