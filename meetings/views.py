@@ -38,7 +38,7 @@ def ticket_detail(request, token):
 
     if ticket.usages < ticket.max_usages:
         ticket.usages += 1
-        # ticket.save()
+        ticket.save()
 
         return render(request, 'meetings/ticket-redirect.html', {
             'meeting': meeting
