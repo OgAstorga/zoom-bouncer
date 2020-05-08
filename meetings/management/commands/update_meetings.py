@@ -35,6 +35,7 @@ class Command(BaseCommand):
         if response.status_code != 204:
             self.stdout.write(self.style.ERROR("Unexpected response when updating"))
             self.stdout.write(response.text)
+            return
 
         response = requests.get(
             "https://api.zoom.us/v2/meetings/{}/".format(meeting_id),
@@ -46,6 +47,7 @@ class Command(BaseCommand):
         if response.status_code != 200:
             self.stdout.write(self.style.ERROR("Unexpected response when fetching"))
             self.stdout.write(response.text)
+            return
 
         fetched = response.json()
 
