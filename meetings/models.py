@@ -3,6 +3,7 @@ from django.db import models
 
 class Meeting(models.Model):
     meeting_id = models.BigIntegerField(primary_key=True)
+    zoom_id = models.BigIntegerField(null=True)
     password = models.CharField(max_length=20)
     join_url = models.CharField(max_length=256, null=True)
     scheduled_date = models.DateTimeField(null=True)
