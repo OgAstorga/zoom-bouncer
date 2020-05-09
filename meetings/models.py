@@ -24,4 +24,5 @@ class Donor(models.Model):
     email = models.CharField(max_length=512)
     amount = models.CharField(max_length=9)
     currency = models.CharField(max_length=5)
+    donation_date = models.CharField(max_length=50, null=True)
     mail_sent = models.BooleanField(default=False, db_index=True)

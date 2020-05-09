@@ -9,6 +9,7 @@ class DonorAdmin(admin.ModelAdmin):
         'last_name',
         'amount',
         'currency',
+        'donation_date',
         'mail_sent'
     )
 

@@ -37,6 +37,7 @@ class Command(BaseCommand):
                     email=donation['donor']['email'],
                     amount=donation['amount'],
                     currency=donation['currency'],
+                    donation_date=donation['donation_date'],
                 )
 
                 donor.save()
@@ -49,6 +50,7 @@ class Command(BaseCommand):
                 donor.email=donation['donor']['email']
                 donor.amount=donation['amount']
                 donor.currency=donation['currency']
+                donor.donation_date=donation['donation_date']
                 donor.save()
 
         self.stdout.write("New donors: {} donors".format(synced_donors))
