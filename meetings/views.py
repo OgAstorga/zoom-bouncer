@@ -56,7 +56,7 @@ def summary(request):
     total = 0
     detail = dict()
     for donor in donors:
-        if campaign > 0 and donor.campaign != campaign:
+        if (campaign == 0 and donor.campaign == 164591) or (campaign > 0 and donor.campaign != campaign):
             continue
 
         if donor.currency not in detail:
