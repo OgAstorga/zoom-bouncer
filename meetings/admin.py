@@ -14,6 +14,14 @@ class DonorAdmin(admin.ModelAdmin):
     )
 
 
+class TicketAdmin(admin.ModelAdmin):
+    list_display = (
+        'token',
+        'usages',
+        'max_usages',
+    )
+
+
 admin.site.register(Meeting)
-admin.site.register(Ticket)
+admin.site.register(Ticket, TicketAdmin)
 admin.site.register(Donor, DonorAdmin)
